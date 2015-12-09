@@ -1,0 +1,23 @@
+---
+cpds:
+  :command: cp
+  :sudo: 
+  :args:
+  - "-R"
+  - "./build/MacOSX-10.9-Release/DmgLocal.app.dSYM"
+  - "./files/DmgLocal.app-{{#vers}}.dSYM"
+  :vars: 
+mvdmg:
+  :command: mv
+  :sudo: 
+  :args:
+  - "./build/MacOSX-10.9-Release/DmgLocal.dmg"
+  - "/Users/erichenderson/henderea@gmail.com/DmgLocal-{{#vers}}.dmg"
+  :vars: 
+cpdmg:
+  :command: cp
+  :sudo: 
+  :args:
+  - "/Users/erichenderson/henderea@gmail.com/DmgLocal-{{#vers}}.dmg"
+  - "/Users/erichenderson/henderea@gmail.com/DmgLocal.dmg"
+  :vars: 
