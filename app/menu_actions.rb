@@ -7,5 +7,6 @@ module MenuActions
       Persist.store.read_only                              = MainMenu[:statusbar].items[:status_readonly][:state] == NSOffState
       MainMenu[:statusbar].items[:status_readonly][:state] = Persist.store.read_only? ? NSOnState : NSOffState
     }
+    MainMenu[:statusbar].subscribe(:status_update) { |_, sender| SUUpdater.sharedUpdater.checkForUpdates(sender) }
   end
 end
