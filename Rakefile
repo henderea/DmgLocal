@@ -29,14 +29,14 @@ end
 Motion::Project::App.setup do |app|
   app.icon                                  = 'Icon.icns'
   app.name                                  = 'DmgLocal'
-  app.version                               = '1.0.6'
-  app.short_version                         = '1.0.6'
+  app.version                               = '1.0.7'
+  app.short_version                         = '1.0.7'
   app.identifier                            = 'us.myepg.DmgLocal'
   app.info_plist['NSUIElement']             = true
   app.info_plist['SUFeedURL']               = 'https://rink.hockeyapp.net/api/2/apps/e1b5fa7615f5468096f1655b8ec96d87'
   app.info_plist['SUEnableSystemProfiling'] = true
   app.info_plist['NSAppleScriptEnabled']    = true
-  app.info_plist['CFBundleDocumentTypes']   = [{ 'CFBundleTypeExtensions' => ['dmg'], 'CFBundleTypeName' => 'Disk Image', 'CFBundleTypeIconFile' => 'diskcopy-doc.icns', 'CFBundleTypeOSTypes' => ['devi'], 'CFBundleTypeRole' => 'Viewer' }]
+  app.info_plist['CFBundleDocumentTypes']   = [{ 'CFBundleTypeExtensions' => %w(dmg sparsebundle), 'CFBundleTypeName' => 'Disk Image', 'CFBundleTypeIconFile' => 'diskcopy-doc.icns', 'CFBundleTypeOSTypes' => ['devi'], 'CFBundleTypeRole' => 'Viewer' }]
   app.deployment_target                     = '10.9'
   app.codesign_certificate                  = 'Developer ID Application: Eric Henderson (SKWXXEM822)'
   # app.paddle {

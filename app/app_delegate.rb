@@ -14,7 +14,7 @@ class AppDelegate
 
   def application(sender, openFiles: filenames)
     Util.log.debug 'application:openFiles called'
-    filenames.select { |fname| File.exist?(fname) && File.extname(fname) == '.dmg' }.each { |fname|
+    filenames.select { |fname| File.exist?(fname) && %w(.dmg .sparsebundle).include?(File.extname(fname)) }.each { |fname|
       fname = File.expand_path(fname)
       dir   = File.dirname(fname)
       Util.log.debug "Dir: #{dir}; fname: #{fname}"
