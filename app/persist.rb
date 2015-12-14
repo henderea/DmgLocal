@@ -170,6 +170,13 @@ class Persist
       Info.last_version = self.last_version
       self.last_version = Info.version.to_s
       self.validate! :read_only, :passthrough
+      self.listen(:passthrough) { |_, _, _|
+        if Persist.store.passthrough?
+          MainMenu[:statusbar].items[:status_readonly][:state] = NSOffState
+        else
+          MainMenu[:statusbar].items[:status_readonly][:state] = Persist.store.read_only? ? NSOnState : NSOffState
+        end
+      }
     }
   end
 
@@ -178,6 +185,12 @@ class Persist
     keys.each { |key|
       @listeners[key.to_sym] ||= []
       @listeners[key.to_sym] << block
+    }
+  end
+
+  def force_listeners(*keys)
+    keys.each { |key|
+      self[key] = self[key]
     }
   end
 
