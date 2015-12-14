@@ -16,9 +16,14 @@ class AppDelegate
     Util.log.debug 'application:openFiles called'
     filenames.select { |fname| File.exist?(fname) && %w(.dmg .sparsebundle).include?(File.extname(fname)) }.each { |fname|
       fname = File.expand_path(fname)
-      dir   = File.dirname(fname)
-      Util.log.debug "Dir: #{dir}; fname: #{fname}"
-      system("hdiutil attach '#{fname}' -mountroot '#{dir}'#{Persist.store.read_only? ? ' -readonly' : ''}")
+      if Persist.store.passthrough?
+        Util.log.debug "Passthrough: fname: #{fname}"
+        system("open -a DiskImageMounter '#{fname}'")
+      else
+        dir = File.dirname(fname)
+        Util.log.debug "Dir: #{dir}; fname: #{fname}"
+        system("hdiutil attach '#{fname}' -mountroot '#{dir}'#{Persist.store.read_only? ? ' -readonly' : ''}")
+      end
     }
     true
   end

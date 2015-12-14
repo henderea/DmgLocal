@@ -77,9 +77,11 @@ class Persist
     end
   end
 
-  property :read_only, :last_version
+  property :read_only, :passthrough,
+           :last_version
 
   validate_map(:read_only) { |_, _, nv| Util.constrain_value_boolean(nv, false) }
+  validate_map(:passthrough) { |_, _, nv| Util.constrain_value_boolean(nv, false) }
 
   def identifier
     NSBundle.mainBundle.bundleIdentifier
@@ -167,7 +169,7 @@ class Persist
     self.no_refresh {
       Info.last_version = self.last_version
       self.last_version = Info.version.to_s
-      self.validate! :read_only
+      self.validate! :read_only, :passthrough
     }
   end
 
