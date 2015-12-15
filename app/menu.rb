@@ -9,6 +9,7 @@ class MainMenu
   menuItem :services_item, 'Services', preset: :services
 
   menuItem :status_readonly, 'Mount as read-only', state: NSOffState
+  menuItem :status_open, 'Open after mount', state: NSOffState
   menuItem :status_passthrough, 'Pass through to DiskImageMounter', state: NSOffState
   menuItem :status_update, 'Check for Updates'
   menuItem :status_version, 'Current Version: 0.0'
@@ -27,6 +28,7 @@ class MainMenu
 
   statusbarMenu(:statusbar, '', status_item_icon: NSImage.imageNamed('Status')) {
     status_readonly
+    status_open
     status_passthrough
     ___
     status_update

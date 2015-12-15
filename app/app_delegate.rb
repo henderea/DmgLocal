@@ -22,7 +22,11 @@ class AppDelegate
       else
         dir = File.dirname(fname)
         Util.log.debug "Dir: #{dir}; fname: #{fname}"
-        system("hdiutil attach '#{fname}' -mountroot '#{dir}'#{Persist.store.read_only? ? ' -readonly' : ''}")
+        output = `hdiutil attach '#{fname}' -mountroot '#{dir}'#{Persist.store.read_only? ? ' -readonly' : ''}`
+        if Persist.store.open_on_mount? && output =~ %r{(#{Regexp.escape(dir)}.+)$}
+          dir_to_open = $1
+          system("open '#{dir_to_open}'")
+        end
       end
     }
     true

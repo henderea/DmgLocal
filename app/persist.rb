@@ -55,7 +55,11 @@ class Persist
 
     def validate_map(*keys, &block)
       @validators ||= {}
-      Array(*keys).each { |key| @validators[key.to_sym] = block }
+      keys.each { |key| @validators[key.to_sym] = block }
+    end
+
+    def validate_bool(default_value, *keys)
+      self.validate_map(*keys) { |_, _, nv| Util.constrain_value_boolean(nv, default_value) }
     end
 
     def validate?(key, old_value, new_value)
@@ -77,11 +81,10 @@ class Persist
     end
   end
 
-  property :read_only, :passthrough,
+  property :read_only, :open_on_mount, :passthrough,
            :last_version
 
-  validate_map(:read_only) { |_, _, nv| Util.constrain_value_boolean(nv, false) }
-  validate_map(:passthrough) { |_, _, nv| Util.constrain_value_boolean(nv, false) }
+  validate_bool false, :read_only, :open_on_mount, :passthrough
 
   def identifier
     NSBundle.mainBundle.bundleIdentifier
@@ -169,12 +172,14 @@ class Persist
     self.no_refresh {
       Info.last_version = self.last_version
       self.last_version = Info.version.to_s
-      self.validate! :read_only, :passthrough
+      self.validate! :read_only, :open_on_mount, :passthrough
       self.listen(:passthrough) { |_, _, _|
         if Persist.store.passthrough?
           MainMenu[:statusbar].items[:status_readonly][:state] = NSOffState
+          MainMenu[:statusbar].items[:status_open][:state]     = NSOnState
         else
           MainMenu[:statusbar].items[:status_readonly][:state] = Persist.store.read_only? ? NSOnState : NSOffState
+          MainMenu[:statusbar].items[:status_open][:state]     = Persist.store.open_on_mount? ? NSOnState : NSOffState
         end
       }
     }

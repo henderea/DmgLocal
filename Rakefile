@@ -29,8 +29,8 @@ end
 Motion::Project::App.setup do |app|
   app.icon                                  = 'Icon.icns'
   app.name                                  = 'DmgLocal'
-  app.version                               = '1.0.9'
-  app.short_version                         = '1.0.9'
+  app.version                               = '1.1.0'
+  app.short_version                         = '1.1.0'
   app.identifier                            = 'us.myepg.DmgLocal'
   app.info_plist['NSUIElement']             = true
   app.info_plist['SUFeedURL']               = 'https://rink.hockeyapp.net/api/2/apps/e1b5fa7615f5468096f1655b8ec96d87'
@@ -39,30 +39,12 @@ Motion::Project::App.setup do |app|
   app.info_plist['CFBundleDocumentTypes']   = [{ 'CFBundleTypeExtensions' => %w(dmg sparsebundle), 'CFBundleTypeName' => 'Disk Image', 'CFBundleTypeIconFile' => 'diskcopy-doc.icns', 'CFBundleTypeOSTypes' => ['devi'], 'CFBundleTypeRole' => 'Viewer' }]
   app.deployment_target                     = '10.9'
   app.codesign_certificate                  = 'Developer ID Application: Eric Henderson (SKWXXEM822)'
-  # app.paddle {
-  #   set :product_id, '492767'
-  #   set :vendor_id, '1657'
-  #   set :api_key, 'ff308e08f807298d8a76a7a3db1ee12b'
-  #   set :current_price, '2.49'
-  #   set :dev_name, 'Eric Henderson'
-  #   set :currency, 'USD'
-  #   set :image, 'https://raw.githubusercontent.com/henderea/MemoryTamer/master/resources/Icon.png'
-  #   set :product_name, 'MemoryTamer'
-  #   set :trial_duration, '7'
-  #   set :trial_text, 'Thanks for downloading a trial of MemoryTamer! I hope you enjoy it.'
-  #   set :product_image, 'Icon.png'
-  #   set :time_trial, true
-  # }
   # app.embedded_frameworks << 'vendor/Growl.framework'
-  # app.vendor_project('vendor/mem_info', :static)
-  # app.vendor_project('vendor/cocoafob', :static)
   # app.frameworks << 'ServiceManagement'
-  # app.libs << '/usr/lib/libcrypto.dylib'
   #
   app.pods do
     pod 'CocoaLumberjack'
     pod 'HockeySDK-Mac'
     pod 'Sparkle'
-    #   # pod 'FsprgEmbeddedStoreMac'
   end
 end

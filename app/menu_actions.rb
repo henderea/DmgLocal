@@ -12,8 +12,10 @@ module MenuActions
 
   def setup
     persisted_checkbox_item :status_readonly, :read_only
+    persisted_checkbox_item :status_open, :open_on_mount
     persisted_checkbox_item :status_passthrough, :passthrough
     MainMenu[:statusbar].items[:status_readonly][:commands][:status_readonly].canExecuteBlock { |_| !Persist.store.passthrough? }
+    MainMenu[:statusbar].items[:status_open][:commands][:status_open].canExecuteBlock { |_| !Persist.store.passthrough? }
     Persist.store.force_listeners :passthrough
     MainMenu[:statusbar].subscribe(:status_update) { |_, sender| SUUpdater.sharedUpdater.checkForUpdates(sender) }
   end
