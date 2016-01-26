@@ -89,6 +89,27 @@ end
 module Util
   module_function
 
+  def login_item_enabled?
+    !SMJobCopyDictionary(KSMDomainUserLaunchd, 'us.myepg.DmgLocal.DLLaunchHelper').nil?
+  end
+
+  def login_item_set_enabled(enabled)
+    url = NSBundle.mainBundle.bundleURL.URLByAppendingPathComponent('Contents/Library/LoginItems/DLLaunchHelper.app', isDirectory: true)
+
+    status = LSRegisterURL(url, true)
+    unless status
+      Util.log.error NSString.stringWithFormat("Failed to LSRegisterURL '%@': %jd", url, status)
+      return false
+    end
+
+    success = SMLoginItemSetEnabled('us.myepg.DmgLocal.DLLaunchHelper', enabled)
+    unless success
+      Util.log.error 'Failed to start DmgLocal launch helper.'
+      return false
+    end
+    true
+  end
+
   def log
     Motion::Log
   end

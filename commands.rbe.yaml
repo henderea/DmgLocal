@@ -21,3 +21,39 @@ cpdmg:
   - "/Users/erichenderson/henderea@gmail.com/DmgLocal-{{#vers}}.dmg"
   - "/Users/erichenderson/henderea@gmail.com/DmgLocal.dmg"
   :vars: 
+rbrlh:
+  :command: cd
+  :sudo: 
+  :args:
+  - DLLaunchHelper/
+  - "&&"
+  - rake
+  - build:release
+  :vars: 
+rcalh:
+  :command: cd
+  :sudo: 
+  :args:
+  - DLLaunchHelper/
+  - "&&"
+  - rake
+  - clean:all
+  :vars: 
+rbdlh:
+  :command: cd
+  :sudo: 
+  :args:
+  - DLLaunchHelper/
+  - "&&"
+  - rake
+  - build:development
+  :vars: 
+bulh:
+  :command: cd
+  :sudo: 
+  :args:
+  - DLLaunchHelper/
+  - "&&"
+  - bundle
+  - update
+  :vars: 

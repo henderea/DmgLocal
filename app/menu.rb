@@ -11,6 +11,7 @@ class MainMenu
   menuItem :status_readonly, 'Mount as read-only', state: NSOffState
   menuItem :status_open, 'Open after mount', state: NSOffState
   menuItem :status_passthrough, 'Pass through to DiskImageMounter', state: NSOffState
+  menuItem :status_login, 'Launch on login', state: NSOffState
   menuItem :status_update, 'Check for Updates'
   menuItem :status_version, 'Current Version: 0.0'
   menuItem :status_quit, 'Quit', preset: :quit
@@ -30,6 +31,8 @@ class MainMenu
     status_readonly
     status_open
     status_passthrough
+    ___
+    status_login
     ___
     status_update
     status_version
