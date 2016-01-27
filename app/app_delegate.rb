@@ -10,6 +10,7 @@ class AppDelegate
     MainMenu.build!
     MenuActions.setup
     MainMenu[:statusbar].items[:status_version][:title] = "Current Version: #{Info.version}"
+    MainMenu[:statusbar].items[:status_login][:state] = Util.login_item_enabled? ? NSOnState : NSOffState
   end
 
   def application(sender, openFiles: filenames)
