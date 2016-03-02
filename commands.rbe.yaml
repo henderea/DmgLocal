@@ -12,14 +12,14 @@ mvdmg:
   :sudo: 
   :args:
   - "./build/MacOSX-10.9-Release/DmgLocal.dmg"
-  - "/Users/erichenderson/henderea@gmail.com/DmgLocal-{{#vers}}.dmg"
+  - "/Users/erichenderson/henderea@gmail.com/DmgLocal/DmgLocal-{{#vers}}.dmg"
   :vars: 
 cpdmg:
   :command: cp
   :sudo: 
   :args:
-  - "/Users/erichenderson/henderea@gmail.com/DmgLocal-{{#vers}}.dmg"
-  - "/Users/erichenderson/henderea@gmail.com/DmgLocal.dmg"
+  - "/Users/erichenderson/henderea@gmail.com/DmgLocal/DmgLocal-{{#vers}}.dmg"
+  - "/Users/erichenderson/henderea@gmail.com/DmgLocal/DmgLocal.dmg"
   :vars: 
 rbrlh:
   :command: cd
