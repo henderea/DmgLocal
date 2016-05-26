@@ -29,8 +29,8 @@ end
 Motion::Project::App.setup do |app|
   app.icon                                  = 'Icon.icns'
   app.name                                  = 'DmgLocal'
-  app.version                               = '1.1.3'
-  app.short_version                         = '1.1.3'
+  app.version                               = '1.1.4'
+  app.short_version                         = '1.1.4'
   app.identifier                            = 'us.myepg.DmgLocal'
   app.info_plist['NSUIElement']             = true
   app.info_plist['SUFeedURL']               = 'https://rink.hockeyapp.net/api/2/apps/e1b5fa7615f5468096f1655b8ec96d87'
